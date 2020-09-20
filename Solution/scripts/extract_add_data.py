@@ -66,5 +66,5 @@ for k in range(88):
         extracted_data.append(review)
  
 df = pd.DataFrame(extracted_data)
-df.to_csv('additional_reviews_data.csv',index=False)
+df.to_csv('add_review_data.csv',index=False)
 

@@ -34,24 +34,16 @@ def GetAllReviewsLink(asin): #function which returns "see all reviews" link taki
     else:
         return "Not Found"
 
-link = GetAllReviewsLink(asin_number)
+link = GetAllReviewsLink(asin_number) #
 
-
-for k in range(89):   
+for k in range(89):   #extract reviews from all pages, assuming each page contains 10 reviews
     response = GetReviewContent(link +'&pageNumber='+str(k))
     soup = BeautifulSoup(response.content)
     for i in soup.findAll("span",{'data-hook':"review-body"}):
         reviews.append(i.text)
      
-
-"""
-
 rev_dict = {'reviews':reviews}                  #converting the reviews list into a dictionary
 review_data = pd.DataFrame.from_dict(rev_dict)  #converting this dictionary into a dataframe
-review_data.to_csv('scraped_reviews_data.csv',index=False)
+review_data.to_csv('review_text_data.csv',index=False)  #converting the dataframe to csv
 
-print(review_data.sample(10))
-#https://www.amazon.in/Yogabar-Wholegrain-Breakfast-Muesli-Fruits/product-reviews/B07M6KZQCN/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews
-
-"""
 
